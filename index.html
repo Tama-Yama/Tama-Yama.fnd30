@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div>
+        <div class="slider-container">
+            <ul class="slider-track">
+                <li><img src="images/denryoku_solar_panels.png" alt="太陽光パネルのイラスト素材"></li>
+                <li><img src="images/fuuryoku_hatsuden.png" alt="風力発電所のイラスト素材"></li>
+                <li><img src="images/hysteric_karyoku.png" alt="火力発電所のイラスト素材"></li>
+                <li><img src="images/denchu_densen_machi.png" alt="電柱のイラスト素材"></li>
+                <li><img src="images/denryoku_solar_panels.png" alt="太陽光パネルのイラスト素材"></li>
+                <li><img src="images/fuuryoku_hatsuden.png" alt="風力発電所のイラスト素材"></li>
+                <li><img src="images/hysteric_karyoku.png" alt="火力発電所のイラスト素材"></li>
+            </ul>
+        </div>   
+    <h1 class="emphasizeBlue">電力同時同量シュミレーター</h1>
+        <ul>
+            <li><h3>電力の同時同量とは、「電力をつくる量（供給）と消費する量（需要）を、同じタイミングで常に一致させる」原則を指します。</h3></li>
+            <li><h3>電気はつくった瞬間に消費されなければならず、基本的に貯蔵は困難です。この供給と需要のバランスが崩れると、大規模停電につながりかねません。</h3></li>
+            <li><h3>「太陽光発電」「風力発電」それぞれの特徴を踏まえ、火力発電所に適切な出力指令を出すことで、電力の同時同量を実現しましょう！</h3></li>
+        </ul>
+        
+
+    <!-- ランダムで決まる天気と風量を表示する場所 -->
+        <h2 class="emphasizeBlue">環境条件</h2>
+        <h4>天気は「晴れ、曇り、雨」、風量は「強風、そよ風、無風」、季節は「春、夏、秋、冬」のいずれかがランダムに表示されます。それぞれの場面に応じた、最適な火力発電出力を考えてみましょう！</h4>
+        <button id="click-btn">わからなくなったときのヒントはこちら</button>
+            <div id="popup-wrapper">
+            <div id="popup-inside">
+                <div id="close">x</div>
+                <ul id="message">
+                <h3>各発電方法の特徴・需要量の変動要因を理解しよう</h3>
+                    <li>太陽光発電量は天気に左右されます</li>
+                    <li>風力発電量は天気に左右されます</li>
+                    <li>電力需要量は冷暖房に左右されます</li>
+                    <li>火力発電量は他電源の発電量に合わせて調整可能です</li>
+                </ul>
+            </div>
+            </div>
+        
+        <table class="constraints" border="1">
+        <tr>
+            <th>天気</th>
+            <th>風量</th>
+            <th>季節</th>
+        </tr>
+        <tr>
+            <td id="weatherDisplay"></td>
+            <td id="windDisplay"></td>
+            <td id="seasonDisplay"></td>
+        </tr>
+    </table>
+
+    <!-- ユーザーが５段階の火力発電量を選ぶ場所 -->
+     <h2 class="emphasizeBlue">火力発電量調節</h2>
+    <select id="fuelSelect">
+        <option value="very-small">出力レベル１（出力最低）</option>
+        <option value="small"> 出力レベル２</option>
+        <option value="middle">出力レベル３</option>
+        <option value="large">出力レベル４</option>
+        <option value="very-large">出力レベル５（出力最大）</option>
+    </select>
+
+    <button id="judge">Let's 判定！</button>
+
+    <!-- 結果表示 -->
+    <div id="result", class="omedetou"></div>
+    <div id="resultText", class="omedetou"></div>
+
+    <button id="constraintsReflesh">環境条件を変えてTry Again!</button>
+
+    <script type="text/javascript" src="script.js"></script>
+
+</div>
+</body>
+</html>
