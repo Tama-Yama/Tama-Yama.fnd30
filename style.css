@@ -1,0 +1,158 @@
+
+body {
+  display: flex;
+  justify-content: center; /* 左右の中央寄せ */
+  padding: 200px;
+} 
+
+h1{
+    font-weight: 900;
+}
+
+
+#click-btn {
+  display: block;
+  margin-bottom: 25px;
+  background-color: rgb(15, 101, 125);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+#popup-wrapper {
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#popup-inside {
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  background: white;
+  margin: 10% auto;
+  padding: 20px;
+  position: relative;
+}
+
+
+#close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  cursor: pointer;
+}
+
+.constraints{
+    background: rgb(236, 251, 254);
+    width:800px;
+    height:100px;
+    table-layout: fixed; /* 列の幅を固定 */
+    
+}
+
+.emphasizeBlue{
+    background: rgb(149, 208, 224);
+    margin-top: 60px;
+}
+
+tr{
+    font-size: 25px;
+}
+
+#weatherDisplay{
+    font-size: 35px;
+    text-align: center;
+    
+}
+#windDisplay{
+    font-size: 35px;
+    text-align: center;
+}
+#seasonDisplay{
+    font-size: 35px;
+    text-align: center;
+}
+
+
+.slider-container {
+  width: 100%;
+  overflow: hidden; /* 枠からはみ出た画像を隠す */
+  display: flex;
+}
+
+.slider-track {
+  display: flex;
+  list-style: none;
+  gap: 30px; /* 画像と画像の間のすき間 */
+  margin: 0;
+  padding: 0;
+  width: max-content;
+  animation: scroll-left 30s linear infinite; /* 30秒かけてループ */
+}
+
+.slider-track li {
+  width: 150px; /* 画像の幅 */
+  flex-shrink: 0;
+}
+
+.slider-track li img {
+  width: 100%;
+  height: auto;
+  display: block;
+  
+}
+
+/* 右から左へ移動するキーフレーム */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* 2セット用意したうちの半分（-50%）移動して繋げる */
+  }
+}
+
+/* ホバーした時に動きを止めたい場合 */
+.slider-container:hover .slider-track {
+  animation-play-state: paused;
+}
+
+#message{
+    text-align: left;
+}
+
+#fuelSelect{
+    background: rgb(236, 251, 254);
+    width:400px;
+    height:25px;
+    font-size: 20px;
+}
+
+#judge{
+    display: block;
+    margin-top: 10px;
+    background-color: rgb(194, 5, 5);
+    color: white;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+.omedetou{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#constraintsReflesh{
+  display: block;
+  margin-top: 25px;
+  background-color: rgb(15, 101, 125);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
