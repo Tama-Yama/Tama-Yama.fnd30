@@ -40,9 +40,9 @@ let randomSeasonItem = seasonList[Math.floor(Math.random() * seasonList.length)]
 
 // 再エネ発電量算出関数の引数に、ランダム関数で算出した天気・風量を入れ、今日の再エネ発電量を確定させる。
 
-const todaySolarPower = solarPowerSimulate(randomWeatherItem);
-const todayWindPower = windPowerSimulate(randomWindItem);
-const todayRenewablePower = todaySolarPower + todayWindPower;
+let todaySolarPower = solarPowerSimulate(randomWeatherItem);
+let todayWindPower = windPowerSimulate(randomWindItem);
+let todayRenewablePower = todaySolarPower + todayWindPower;
 
 
 // 電力需要量（季節を引数とする。季節の値に応じて条件分岐。数値（需要量）を返す）
@@ -59,7 +59,7 @@ const consumptionSimulate = function(season){
     };
 
 //ランダム関数で出した季節を代入し、今日の電力需要量を確定させる。
-const consumption = consumptionSimulate(randomSeasonItem);
+let consumption = consumptionSimulate(randomSeasonItem);
 
 // 火力発電量算出。fuelSelectedByUserはユーザーの入力値。
 const fuelPowerSimulate = function(fuelSelectedByUser){
@@ -84,24 +84,30 @@ document.querySelector("#seasonDisplay").innerText = randomSeasonItem;
 // ID＝Jedgeをもつ要素で、第一引数のクリック操作が行われると、イベントリスナーが作動し、第二引数の関数が処理される。
 
 document.querySelector("#judge").addEventListener("click", () => {
-    const fuelSelectedUser = document.querySelector("#fuelSelect").value;
-    const todayFuelPower = fuelPowerSimulate(fuelSelectedUser);
-    const todayPower = todayRenewablePower + todayFuelPower;
+    let fuelSelectedUser = document.querySelector("#fuelSelect").value;
+    let todayFuelPower = fuelPowerSimulate(fuelSelectedUser);
+    let todayPower = todayRenewablePower + todayFuelPower;
         if (5 >= Math.abs(todayPower - consumption)) {
             document.querySelector("#result").innerText = "ありがとう！あなたのおかげで電力の同時同量が保たれました！";
             document.querySelector("#resultText").innerText= `本日の需要＝供給量は、約 ${(todayPower + consumption)/2} 億kWhでした。内訳は以下の通りです。火力発電量： ${todayFuelPower} 億kWh、太陽光発電量： ${todaySolarPower} 億kWh、風力発電量： ${todayWindPower} 億kWh。`;
-        } else {
+        }
+        else{
             document.querySelector("#result").innerText = "火力発電量が不足または過剰のようだ…。Let's Agein!🥲";
-        };
+            document.querySelector("#resultText").innerText= "";
+        }
     }
 );
 
 
-//ID=をもつ要素で、第一引数のクリック操作が行われると、イベントリスナーが作動し、ランダム関数が再び処理され、季節、天気、風量がHTML要素のInnerTextに渡され、結果発表のInnerTextが初期化される。
+//ID=をもつ要素で、第一引数のクリック操作が行われると、イベントリスナーが作動し、ランダム関数が再び処理され、季節、天気、風量が更新され、結果発表のInnerTextが初期化される。
 document.querySelector("#constraintsReflesh").addEventListener("click", () => {
-    let randomWeatherItem = weatherList[Math.floor(Math.random() * weatherList.length)];
-    let randomWindItem = windList[Math.floor(Math.random() * windList.length)];
-    let randomSeasonItem = seasonList[Math.floor(Math.random() * seasonList.length)];
+    randomWeatherItem = weatherList[Math.floor(Math.random() * weatherList.length)];
+    randomWindItem = windList[Math.floor(Math.random() * windList.length)];
+    randomSeasonItem = seasonList[Math.floor(Math.random() * seasonList.length)];
+    todaySolarPower = solarPowerSimulate(randomWeatherItem);
+    todayWindPower = windPowerSimulate(randomWindItem);
+    todayRenewablePower = todaySolarPower + todayWindPower;
+    consumption = consumptionSimulate(randomSeasonItem);
     document.querySelector("#weatherDisplay").innerText = randomWeatherItem;
     document.querySelector("#windDisplay").innerText = randomWindItem;
     document.querySelector("#seasonDisplay").innerText = randomSeasonItem;
@@ -125,4 +131,3 @@ popupWrapper.addEventListener('click', e => {
     popupWrapper.style.display = 'none';
   }
 });
-
